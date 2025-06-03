@@ -1,38 +1,41 @@
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-//  import './App.css'
-import React ,{useState} from 'react'
-import axios from 'axios'
+ import './App.css'
+import React from 'react'
+// import axios from 'axios'
+
 function App() {
-  
-  const [movie,setMovie]=useState([])
-
-  const fetchMovie =()=>{
-    axios.get("https://www.omdbapi.com/?s=kabhi&apikey=57a3af3e")
-    .then((response)=>{
-
-      console.log(response);
-      setMovie(response.data.Search)
-    })
-  }
   return (
-    <>
-
- <button onClick={fetchMovie}>Fetch Movie</button>
-{
-  movie.map((value,index)=>{
-  return(
-      <h3 key={index}>{value.Title}</h3>
-  );
-  })
-  
- }
-
- </>
-
- 
+   <>
+ <nav className="navbar navbar-expand-lg bg-body-tertiary">
+  <div className="container-fluid">
+    <a className="navbar-brand" href="#">Navbar</a>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#">Link</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#">kabhi</a>
+        </li>
+      </ul>
+      <form className="d-flex" role="search">
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+   </>
   )
+
 }
 
 export default App
