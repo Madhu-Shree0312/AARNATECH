@@ -1,8 +1,12 @@
 #root {
+  position: absolute;
+  top: 0;
+  left: 0;
   max-width: 1280px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 2rem;
-  text-align: center;
+  /* text-align: left;
+  vertical-align: top; */
 }
 
 .logo {
@@ -39,4 +43,7 @@
 
 .read-the-docs {
   color: #888;
+}
+.blank{
+  color: aqua;
 }
