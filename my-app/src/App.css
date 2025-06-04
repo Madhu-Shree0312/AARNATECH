@@ -1,0 +1,40 @@
+body {
+  background-color: rgb(30, 13, 46);
+}
+
+.logo-size {
+
+  width: 100px;
+  height: auto;
+
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.heading {
+  font-size: 36.5px;
+}
+
+.input-field {
+  outline: none;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 3px;
+  background-color: #8E50FD;
+  color: white;
+}
+.input-field::placeholder{
+  color:#bf9aff;
+}
+
+.search-button {
+  border-radius: 3px;
+  font-size: 20px;
+  color:#bf9aff;
+  background-color: #8E50FD;
+}
+.heading-color{
+  color:  #8E50FD;
+}

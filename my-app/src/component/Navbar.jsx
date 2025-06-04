@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react"
 
-const Navbar = () =>{
-    return(
+
+const Navbar = () => {
+    return (
         <>
-        <h1>This is Navbar.</h1>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-12">
+                        <img src="\assets\file_000000001ba4622f9f4e04a9f750e302.png" alt="logo" className="logo-size" />
+                    </div>
+                </div>
+            </div>
         </>
     )
 };
