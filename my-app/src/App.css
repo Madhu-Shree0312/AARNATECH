@@ -36,5 +36,12 @@ body {
   background-color: #8E50FD;
 }
 .heading-color{
-  color:  #8E50FD;
+  color: #bf9aff;
 }
+.movie-card{
+  height: 310px;
+  width: auto;
+  }
+  .card-bg{
+    background-color: #3c275e;
+  }
