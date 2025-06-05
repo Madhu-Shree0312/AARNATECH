@@ -4,18 +4,30 @@ import axios from "axios";
 const Home = () => {
 
     const [movieAllData, setMovieAllData] = useState([]);
+    const [inputValue, setInputValue] = useState("");
+    const [searchKeyword, setSearchKeyword] = useState("movie")
     const getMovieData = async () => {
         const data = await axios.get(
-            "http://www.omdbapi.com/?apikey=57a3af3e&i=tt1285016&s=movie"
+            `http://www.omdbapi.com/?apikey=57a3af3e&s=${searchKeyword}`
+
         );
         setMovieAllData(data?.data?.Search)
     };
 
     useEffect(() => {
         getMovieData();
-    }, []);
+    }, [searchKeyword]);
 
-    console.log(movieAllData)
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    const handleSearch = () => {
+        setSearchKeyword(inputValue);
+    }
+    console.log('input-value', inputValue);
+
+
 
     return (
         <>
@@ -30,8 +42,12 @@ const Home = () => {
                             </p>
                         </div>
                         <div className="d-flex gap-2 ">
-                            <input type="text" className="input-field w-75  border-0  px-2" placeholder="Search Your Favourite...." />\
-                            <button className="w-25 border-0 search-button" >Search</button>
+                            <input type="text"
+                                className="input-field w-75  border-0  px-2"
+                                placeholder="Search Your Favourite...."
+                                value={inputValue}
+                                onChange={handleInputChange} />
+                            <button className="w-25 border-0 search-button" onClick={handleSearch} >Search</button>
                         </div>
                     </div>
                 </div>
