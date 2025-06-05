@@ -6,12 +6,19 @@ const Home = () => {
     const [movieAllData, setMovieAllData] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [searchKeyword, setSearchKeyword] = useState("movie")
-    const getMovieData = async () => {
-        const data = await axios.get(
-            `http://www.omdbapi.com/?apikey=57a3af3e&s=${searchKeyword}`
 
-        );
-        setMovieAllData(data?.data?.Search)
+    const getMovieData = async () => {
+        try {
+            const data = await axios.get(
+                `http://www.omdbapi.com/?apikey=57a3af3e&s=${searchKeyword}`
+
+            );
+            setMovieAllData(data?.data?.Search)
+            console.log("data", data);
+
+        } catch (err) {
+            console.log("error", err);
+        }
     };
 
     useEffect(() => {
@@ -25,7 +32,7 @@ const Home = () => {
     const handleSearch = () => {
         setSearchKeyword(inputValue);
     }
-    console.log('input-value', inputValue);
+
 
 
 
