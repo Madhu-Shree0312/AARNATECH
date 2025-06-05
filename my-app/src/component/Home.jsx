@@ -1,24 +1,26 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = () => {
 
-
-    const getMovieData = async () =>{
-        const data = await useActionState.get(
+    const [movieAllData, setMovieAllData] = useState([]);
+    const getMovieData = async () => {
+        const data = await axios.get(
             "http://www.omdbapi.com/?apikey=57a3af3e&i=tt1285016&s=movie"
         );
-        console.log("movie-data",data);
+        setMovieAllData(data?.data?.Search)
     };
 
-    useEffect(()=>{
-    getMovieData();
-    },[]);
+    useEffect(() => {
+        getMovieData();
+    }, []);
+
+    console.log(movieAllData)
 
     return (
         <>
             <div className="container-fluid">
-                <div className="row px-3">
+                <div className="row px-4">
                     <div className="col-6 d-flex flex-column gap-5">
                         <div>
                             <h1 className="text-light heading">Stream your favorites anytime, anywhere</h1>
@@ -33,95 +35,25 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row px-4 my-5 row-gap-4">
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
+                <div className="row px-4 my-5 row-gap-4 gap-3 justify-content-between">
+                    {movieAllData?.map((movie) => {
+                        return (
+                            <div className="col-2" key={movie?.imdbID}>
+                                <div className="card-bg rounded">
+                                    <div >
+                                        <img src={movie?.Poster}
+                                            alt="movie-cart" className="movie-card p-2 pb-0" />
+                                    </div>
+                                    <div className="py-2">
+                                        <p className=" heading-color fs-5 text-center m-0 text-overflow px-2">{movie?.Title}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-2  ">
-                        <div className="card-bg rounded">
-                            <div >
-                                <img src="https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg"
-                                    alt="movie-cart" className="movie-card p-2 pb-0" />
-                            </div>
-                            <div className="py-2">
-                                <p className=" heading-color fs-5 text-center m-0">Movie Title</p>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })
+                    }
+
+
                 </div>
             </div>
         </>
