@@ -2,7 +2,13 @@ import React from "react";
 
 const Single = () =>{
     return(
-        <h1>This is our single page componnent.</h1>
+      <div className="container-fluid">
+        <div className="row px-4">
+            <div className="col-12">
+               <h1 className="text-light">This is Single</h1>
+            </div>
+        </div>
+      </div>
     )
 };
 export default Single;

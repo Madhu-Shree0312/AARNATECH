@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
+
+
 
 const Home = () => {
 
     const [movieAllData, setMovieAllData] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    const [searchKeyword, setSearchKeyword] = useState("movie")
+    const [searchKeyword, setSearchKeyword] = useState("movie");
+    const [isDataAvailable, setIsDataAvailable] = useState(true);
 
     const getMovieData = async () => {
         try {
-            const data = await axios.get(
+            const { data } = await axios.get(
                 `http://www.omdbapi.com/?apikey=57a3af3e&s=${searchKeyword}`
 
             );
-            setMovieAllData(data?.data?.Search)
-            console.log("data", data);
-
+            if (data?.Response == "True") {
+                setMovieAllData(data?.Search);
+                setIsDataAvailable(true)
+            }
+            if (data?.Response == "False") {
+                setIsDataAvailable(false);
+            }
         } catch (err) {
             console.log("error", err);
         }
@@ -59,22 +67,28 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="row px-4 my-5 row-gap-4 gap-3 justify-content-between">
-                    {movieAllData?.map((movie) => {
-                        return (
-                            <div className="col-2" key={movie?.imdbID}>
-                                <div className="card-bg rounded">
-                                    <div >
-                                        <img src={movie?.Poster}
-                                            alt="movie-cart" className="movie-card p-2 pb-0" />
-                                    </div>
-                                    <div className="py-2">
-                                        <p className=" heading-color fs-5 text-center m-0 text-overflow px-2">{movie?.Title}</p>
-                                    </div>
+                    {isDataAvailable ? (
+                        movieAllData?.map((movie) => {
+                            return (
+                                <div className="col-2" key={movie?.imdbID}>
+                                    <NavLink className={"text-decoration-none"} to={`/single/${movie?.imdbID}`}>
+                                        <div className="card-bg rounded">
+                                            <div >
+                                                <img src={movie?.Poster}
+                                                    alt="movie-cart" className="movie-card p-2 pb-0" />
+                                            </div>
+                                            <div className="py-2">
+                                                <p className=" heading-color fs-5 text-center m-0 text-overflow px-2">{movie?.Title}</p>
+                                            </div>
+                                        </div>
+                                    </NavLink>
+
                                 </div>
-                            </div>
-                        )
-                    })
-                    }
+                            );
+                        })
+                    ) : (
+                        <h1 className="fs-1 text-center text-white">No Result Found</h1>
+                    )}
 
 
                 </div>
